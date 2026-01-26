@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: #212121;color: aliceblue;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addlanguage(langname){
+        const el=document.createElement('li');
+        el.innerHTML=`${langname}`;
+        const ul = document.querySelector('.language');
+        ul.appendChild(el);
+    }
+    addlanguage("python");
+    addlanguage("java");
+    function addlang(langname){
+        const list=document.createElement('li');
+        list.appendChild(document.createTextNode(langname));
+        document.querySelector('.language').appendChild(list);
+    }
+    addlang("bhai lang")
+</script>
+</html>
