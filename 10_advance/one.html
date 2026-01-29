@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        form{
+            font-size: 22px;
+        }
+        input{
+            width:200px;
+            font-size: 15px;
+            padding:5px;
+            border-radius: 8px;
+        }
+        #button{
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            margin:10px;
+        }
+        #submit{
+            padding:5px;
+            font-size:20px;
+            border-radius: 8px;;
+        }
+        #insert{
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            margin:10px;
+            margin-top:50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Find Github Followers</h1>
+    <form >
+        <label>Enter Github Username:</label>
+        <input type="text" id="url" placeholder="username">
+        <div id="button"><button id="submit">Submit</button></div>
+        <div id="insert">
+            <div id="photo"></div>
+            <div id="followers"></div>
+        </div>
+    </form>
+</body>
+<script>
+    const ph = document.getElementById('photo');
+    const fo=document.getElementById('followers');
+    const form=document.getElementById('submit');
+    form.addEventListener('click',function(e){
+        e.preventDefault();
+        let url=(document.getElementById('url')).value;
+        if(url==''||url==' '){
+            alert("enter valid url");
+        }
+        url="https://api.github.com/users/"+url;
+        const xhr=new XMLHttpRequest;
+        xhr.open('GET',url);
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4){
+                if(xhr.status === 200){
+                    const data = JSON.parse(xhr.responseText);
+                    update(data.followers,data.avatar_url);
+                } else {
+                    ph.innerHTML = "❌ User not found or invalid URL";
+                    fo.innerHTML='';
+                }
+            }
+        }
+        xhr.send();
+    })
+    function update(followers,photo){
+        ph.innerHTML = `
+        <img 
+            src="${photo}" 
+            alt="GitHub Avatar"
+            style="width:120px; border-radius:50%;width:250px"
+        >
+        `;
+        fo.innerHTML=`followers : ${followers}`;
+    }
+</script>
+</html>
