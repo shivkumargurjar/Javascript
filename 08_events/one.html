@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+<body style="background-color: #414141;">
+    <h1>Events</h1>
+    <ul id="images">
+        <li>
+            <img src="google.png" alt="loading" id="google">
+        </li>
+        <li>
+            <img src="microsoft.png" id="microsoft" alt="loading">
+        </li>
+        <li>
+            <img src="netflix.png" id="netflix alt="loading">
+        </li>
+        <li>
+            <img src="apple.png" id="apple" alt="loading">
+        </li>
+        <li><a style="color: aliceblue;" href="https://www.youtube.com/" id="YouTube">You Tube</a></li>
+    </ul>
+</body>
+<script>
+    // document.getElementById('google').onclick=function(){
+    //     alert("google clicked");
+    // }
+    // document.getElementById('microsoft').addEventListener('click',function(e){
+    //     alert("microsoft clicked");
+    // })
+    document.querySelector('#images').addEventListener('click',function(e){
+        if(e.target.tagName=='IMG'){
+            let removeIt=e.target.parentNode;
+            removeIt.remove();
+        }
+    })
+</script>
+</html>
